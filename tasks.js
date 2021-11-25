@@ -24,8 +24,6 @@ function addTask(e){
     link.appendChild(document.createTextNode('X'))
     li.appendChild(link)
 
-    console.log(link)
-
     const ul = document.querySelector('.collection')
     ul.appendChild(li)
 
@@ -63,6 +61,16 @@ function deleteTaskFromLocalStorage(task){
 
 function deleteAllTasks(e){
     tasksList.innerHTML = ''
+    deleteAllTaskFromLocalStorage()
+}
+
+function deleteAllTaskFromLocalStorage(){
+    //localStorage.clear();
+    if (localStorage.getItem('tasks') === null){
+       let tasks = []
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
+    localStorage.removeItem('tasks');
 }
 
 function addTaskToLocalStorage(task){
