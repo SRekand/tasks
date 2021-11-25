@@ -29,6 +29,9 @@ function addTask(e){
     const ul = document.querySelector('.collection')
     ul.appendChild(li)
 
+// add task
+    addTaskToLocalStorage(task);
+
 // value is 0
     taskInput.value = ''
     e.preventDefault()
@@ -43,4 +46,16 @@ function deleteTask(e){
 
 function deleteAllTasks(e){
     tasksList.innerHTML = ''
+}
+
+function addTaskToLocalStorage(task){
+    let tasks;
+    if (localStorage.getItem('tasks') === null){
+        tasks = []
+    }   else {
+        tasks = JSON.parse((localStorage.getItem('tasks')))
+    }
+    console.log(tasks)
+    tasks.push(task)
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
